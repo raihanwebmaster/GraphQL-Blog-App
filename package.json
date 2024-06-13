@@ -1,0 +1,34 @@
+{
+  "name": "GraphQL-Blog-App",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch './**/*.ts' --exec ts-node-dev src/index.ts",
+    "dev1": "ts-node-dev --respawn --transpile-only src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raihanwebmaster/GraphQL-Blog-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raihanwebmaster/GraphQL-Blog-App/issues"
+  },
+  "homepage": "https://github.com/raihanwebmaster/GraphQL-Blog-App#readme",
+  "dependencies": {
+    "@apollo/server": "^4.10.4",
+    "@prisma/client": "^5.15.0",
+    "@types/node": "^20.14.2",
+    "graphql": "^16.8.2",
+    "prisma": "^5.15.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}
