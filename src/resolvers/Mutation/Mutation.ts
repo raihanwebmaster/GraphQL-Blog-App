@@ -11,7 +11,7 @@ interface User {
 }
 
 export const Mutation = {
-    signup: async (parent: any, args: User, {prisma}: any, info: any) => {
+    signup: async (parent: any, args: User, { prisma }: any, info: any) => {
         const isExistingUser = await prisma.user.findFirst({
             where: {
                 email: args.email
@@ -39,13 +39,13 @@ export const Mutation = {
                 }
             })
         }
-        const token = await jwtHelper({ userId: newUser.id }, config.jwt.secret as string);
+        const token = await jwtHelper.generateToken({ userId: newUser.id }, config.jwt.secret as string);
         return {
             userError: null,
             token
         };
     },
-    signin: async (parent: any, args: { email: string, password: string }, {prisma}: any, info: any) => {
+    signin: async (parent: any, args: { email: string, password: string }, { prisma }: any, info: any) => {
         const user = await prisma.user.findFirst({
             where: {
                 email: args.email
@@ -64,10 +64,30 @@ export const Mutation = {
                 token: null
             }
         }
-        const token = await jwtHelper({ userId: user.id }, config.jwt.secret as string);
+        const token = await jwtHelper.generateToken({ userId: user.id }, config.jwt.secret as string);
         return {
             userError: null,
             token
+        }
+    },
+    addPost: async (parent: any, args: { post: { title: string, content: string } }, { prisma, userInfo }: any, info: any) => {
+        const userId = userInfo?.userId;
+        if (!userId) {
+            return {
+                userError: 'Unauthorized',
+                post: null
+            }
+        }
+        const newPost = await prisma.post.create({
+            data: {
+                title: args.post.title,
+                content: args.post.content,
+                authorId: userId
+            }
+        });
+        return {
+            userError: null,
+            post: newPost
         }
     }
 }
