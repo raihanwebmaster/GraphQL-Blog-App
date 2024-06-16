@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import { jwtHelper } from "../../utils/jwtHelper";
 import config from "../../config";
 import bcrypt from 'bcrypt';
@@ -10,11 +9,10 @@ interface User {
     password: string;
     bio?: string;
 }
-const prima = new PrismaClient();
 
 export const Mutation = {
-    signup: async (parent: any, args: User, context: any, info: any) => {
-        const isExistingUser = await prima.user.findFirst({
+    signup: async (parent: any, args: User, {prisma}: any, info: any) => {
+        const isExistingUser = await prisma.user.findFirst({
             where: {
                 email: args.email
             }
@@ -26,7 +24,7 @@ export const Mutation = {
             }
         }
         const hashedPassword = await bcrypt.hash(args.password, 10);
-        const newUser = await prima.user.create({
+        const newUser = await prisma.user.create({
             data: {
                 name: args.name,
                 email: args.email,
@@ -34,7 +32,7 @@ export const Mutation = {
             }
         })
         if (args.bio) {
-            await prima.profile.create({
+            await prisma.profile.create({
                 data: {
                     bio: args.bio,
                     userId: newUser.id
@@ -47,8 +45,8 @@ export const Mutation = {
             token
         };
     },
-    signin: async (parent: any, args: { email: string, password: string }, context: any, info: any) => {
-        const user = await prima.user.findFirst({
+    signin: async (parent: any, args: { email: string, password: string }, {prisma}: any, info: any) => {
+        const user = await prisma.user.findFirst({
             where: {
                 email: args.email
             }

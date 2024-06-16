@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 
-const prima = new PrismaClient();
 export const Query = {
-    users: async () => {
-        return await prima.user.findMany()
+    users: async (parent: any, args: any, { prisma }: any) => {
+        return await prisma.user.findMany()
     }
 }
