@@ -33,7 +33,7 @@ This is a full-stack blog application built with Node.js, Prisma, GraphQL, TypeS
 
 ## Prerequisites
 
-- Node.js (v14.x or later)
+- Node.js (v20.x or later)
 - PostgreSQL
 - Yarn or npm
 
