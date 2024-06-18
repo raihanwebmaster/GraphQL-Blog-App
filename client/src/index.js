@@ -12,6 +12,8 @@ import Signin from './pages/Signin/Signin';
 import Posts from './pages/Post/Posts';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import App from './App';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -42,6 +44,7 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <RouterProvider router={router} />
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </ApolloProvider>
     {/* <App /> */}
   </React.StrictMode>

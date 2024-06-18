@@ -2,6 +2,7 @@ import { gql, useMutation } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeSlashIcon, BanknotesIcon } from '@heroicons/react/24/solid'
+import { toast } from 'react-toastify';
 
 const LOGIN = gql`
 mutation login($email: String!, $password: String!) {
@@ -29,14 +30,12 @@ const Signin = () => {
             variables: data
         })
     }
-
-    console.log("data: ", data)
     const [userError, setUserError] = useState(null);
 
     useEffect(() => {
         if (data && data?.signin?.token) {
-            console.log("token", data.signin.token)
             localStorage.setItem("token", data.signin.token)
+            navigate('/posts')
         }
         if (data && data.signin?.userError) {
             setUserError(data.signin.userError)
@@ -51,6 +50,20 @@ const Signin = () => {
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
+
+    useEffect(() => {
+        if (userError) {
+            toast.error('Something went wrong !!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }, [userError]);
 
     return (
         <section class="bg-gray-50 dark:bg-gray-900">
