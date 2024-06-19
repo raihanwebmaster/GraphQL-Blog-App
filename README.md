@@ -14,6 +14,7 @@ This is a full-stack blog application built with Node.js, Prisma, GraphQL, TypeS
 - [Folder Structure](#folder-structure)
 - [Contributing](#contributing)
 - [License](#license)
+- [Note](#note)
 
 ## Technologies Used
 
@@ -181,3 +182,8 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Note
+
+The frontend part of this project is not fully completed as the focus is on the backend development. Contributions to complete the frontend part are welcome.
+ 
