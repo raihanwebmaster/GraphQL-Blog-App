@@ -11,11 +11,12 @@ const Main = () => {
   const shouldShowNavAndFooter = !hiddenPaths.includes(location.pathname);
 
   return (
-    <div className='isolate bg-white'>
+    <div className=' bg-white'>
       {shouldShowNavAndFooter && <Navbar />}
-      <Background>
+      {/* <Background>
         <Outlet />
-      </Background>
+      </Background> */}
+        <Outlet />
       {shouldShowNavAndFooter && <Footer />}
     </div>
   );
