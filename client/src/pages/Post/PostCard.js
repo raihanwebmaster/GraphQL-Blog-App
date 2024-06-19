@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './PostCard.css'
 import { UserCircleIcon } from '@heroicons/react/24/solid'
 
 const PostCard = ({ post }) => {
@@ -38,6 +37,20 @@ const PostCard = ({ post }) => {
                         </a>
                     </p>
                 </div>
+            </div>
+            <div className="flex gap-x-4 mt-4">
+                <button 
+                    className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700"
+                    onClick={() => {}}
+                >
+                    Delete
+                </button>
+                <button 
+                    className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700"
+                    onClick={() => {}}
+                >
+                    Publish
+                </button>
             </div>
         </article>
 
